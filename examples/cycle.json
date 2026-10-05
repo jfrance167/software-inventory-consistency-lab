@@ -1,0 +1,30 @@
+{
+  "schema": "inventory-lab/1",
+  "synthetic": true,
+  "components": [
+    {
+      "id": "A",
+      "name": "A",
+      "version": "1",
+      "sha256": null
+    },
+    {
+      "id": "B",
+      "name": "B",
+      "version": "1",
+      "sha256": null
+    }
+  ],
+  "edges": [
+    {
+      "source": "A",
+      "target": "B"
+    },
+    {
+      "source": "B",
+      "target": "A"
+    }
+  ],
+  "assertions": [],
+  "roots": []
+}

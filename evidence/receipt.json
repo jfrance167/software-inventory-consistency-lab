@@ -1,0 +1,341 @@
+{
+  "generated_at_utc": "2026-10-05T06:59:45.450500+00:00",
+  "runtime": "3.13.7 (tags/v3.13.7:bcee1c3, Aug 14 2025, 14:15:11) [MSC v.1944 64 bit (AMD64)]",
+  "platform": "win32",
+  "test_counts": {
+    "normal": 24,
+    "optimized": 24
+  },
+  "checks": [
+    {
+      "check": "normal",
+      "exit": 0
+    },
+    {
+      "check": "optimized",
+      "exit": 0
+    },
+    {
+      "check": "compile",
+      "exit": 0
+    },
+    {
+      "check": "mutations",
+      "exit": 0
+    },
+    {
+      "check": "bandit",
+      "exit": 0
+    }
+  ],
+  "frozen_cases": 32,
+  "cli_cases": [
+    {
+      "case": "empty",
+      "exit": 0,
+      "expected_exit": 0,
+      "pass": true
+    },
+    {
+      "case": "one",
+      "exit": 0,
+      "expected_exit": 0,
+      "pass": true
+    },
+    {
+      "case": "chain",
+      "exit": 0,
+      "expected_exit": 0,
+      "pass": true
+    },
+    {
+      "case": "disconnected",
+      "exit": 0,
+      "expected_exit": 0,
+      "pass": true
+    },
+    {
+      "case": "cycle",
+      "exit": 0,
+      "expected_exit": 0,
+      "pass": true
+    },
+    {
+      "case": "self_cycle",
+      "exit": 0,
+      "expected_exit": 0,
+      "pass": true
+    },
+    {
+      "case": "duplicate_identical",
+      "exit": 1,
+      "expected_exit": 1,
+      "pass": true
+    },
+    {
+      "case": "duplicate_conflict",
+      "exit": 1,
+      "expected_exit": 1,
+      "pass": true
+    },
+    {
+      "case": "duplicate_references",
+      "exit": 1,
+      "expected_exit": 1,
+      "pass": true
+    },
+    {
+      "case": "unknown_target",
+      "exit": 1,
+      "expected_exit": 1,
+      "pass": true
+    },
+    {
+      "case": "unknown_source",
+      "exit": 1,
+      "expected_exit": 1,
+      "pass": true
+    },
+    {
+      "case": "unknown_both",
+      "exit": 1,
+      "expected_exit": 1,
+      "pass": true
+    },
+    {
+      "case": "duplicate_edge",
+      "exit": 1,
+      "expected_exit": 1,
+      "pass": true
+    },
+    {
+      "case": "duplicate_root",
+      "exit": 1,
+      "expected_exit": 1,
+      "pass": true
+    },
+    {
+      "case": "unknown_root",
+      "exit": 1,
+      "expected_exit": 1,
+      "pass": true
+    },
+    {
+      "case": "matching_assertion",
+      "exit": 0,
+      "expected_exit": 0,
+      "pass": true
+    },
+    {
+      "case": "null_absence",
+      "exit": 0,
+      "expected_exit": 0,
+      "pass": true
+    },
+    {
+      "case": "hash_mismatch",
+      "exit": 1,
+      "expected_exit": 1,
+      "pass": true
+    },
+    {
+      "case": "null_vs_hash",
+      "exit": 1,
+      "expected_exit": 1,
+      "pass": true
+    },
+    {
+      "case": "name_version_mismatch",
+      "exit": 1,
+      "expected_exit": 1,
+      "pass": true
+    },
+    {
+      "case": "unknown_assertion",
+      "exit": 1,
+      "expected_exit": 1,
+      "pass": true
+    },
+    {
+      "case": "duplicate_assertion",
+      "exit": 1,
+      "expected_exit": 1,
+      "pass": true
+    },
+    {
+      "case": "contradictory_assertions",
+      "exit": 1,
+      "expected_exit": 1,
+      "pass": true
+    },
+    {
+      "case": "equal_null_declarations",
+      "exit": 0,
+      "expected_exit": 0,
+      "pass": true
+    },
+    {
+      "case": "different_hash_declarations",
+      "exit": 0,
+      "expected_exit": 0,
+      "pass": true
+    },
+    {
+      "case": "equal_hash_different_names",
+      "exit": 0,
+      "expected_exit": 0,
+      "pass": true
+    },
+    {
+      "case": "unknown_schema",
+      "exit": 3,
+      "expected_exit": 3,
+      "pass": true
+    },
+    {
+      "case": "missing_name",
+      "exit": 2,
+      "expected_exit": 2,
+      "pass": true
+    },
+    {
+      "case": "missing_assertion_version",
+      "exit": 2,
+      "expected_exit": 2,
+      "pass": true
+    },
+    {
+      "case": "unknown_schema_bad_late",
+      "exit": 2,
+      "expected_exit": 2,
+      "pass": true
+    },
+    {
+      "case": "duplicate_then_bad_late",
+      "exit": 2,
+      "expected_exit": 2,
+      "pass": true
+    },
+    {
+      "case": "synthetic_false",
+      "exit": 2,
+      "expected_exit": 2,
+      "pass": true
+    }
+  ],
+  "mutations": {
+    "mutations": 3,
+    "caught": 3,
+    "original_unchanged": true,
+    "results": [
+      {
+        "mutation": "skip_unknown_reference",
+        "caught_by_assertion": true,
+        "exit": 1,
+        "mutated_sha256": "c4415ea335bbe1d5463eb08e5267a09ca90bf11fce3c9c0bb39e96389e4ebdf8",
+        "expected_test": "test_frozen_cases"
+      },
+      {
+        "mutation": "choose_last_duplicate",
+        "caught_by_assertion": true,
+        "exit": 1,
+        "mutated_sha256": "9c32bde81d57e3c21fa74476464e74f65553882bc330a86512bc2e279ccc1d44",
+        "expected_test": "test_no_last_duplicate_selection"
+      },
+      {
+        "mutation": "cycle_inconsistent",
+        "caught_by_assertion": true,
+        "exit": 1,
+        "mutated_sha256": "0fcdaf4a98aed2fc06680a41058204f4af0051a42daa7ed487bb6f14f5e45581",
+        "expected_test": "test_frozen_cases"
+      }
+    ],
+    "original_sha256": "32c88c22e4c1875dd7c812c48df388feb7886cf1c0bff75607009bb99317f7a6"
+  },
+  "graph_oracle": {
+    "nodes": 3,
+    "graphs": 512,
+    "algorithm": "independent boolean transitive closure"
+  },
+  "bandit": {
+    "findings": 0,
+    "errors": 0,
+    "scope": "inventory_lab/ and lab.py; installed Bandit 1.9.4"
+  },
+  "pure_model_source_gate": "PASS; static import/call inspection, not containment proof",
+  "source_sha256": [
+    {
+      "path": "lab.py",
+      "bytes": 266,
+      "sha256": "98857335cbd62b8fecd71d2ffcfe3a38e921b9f58d8f13a52fd5fa8b78f0dbf6"
+    },
+    {
+      "path": "CONTRACT.md",
+      "bytes": 8401,
+      "sha256": "b56d5cd46ddba48454cdf129167abc214a0955e7e50fcd3f94cd3b6cef42a27a"
+    },
+    {
+      "path": "tests/cases.json",
+      "bytes": 24003,
+      "sha256": "6db50d9db1e87bed9fbf8a2302b74b83723dbc3cb56b73df3d97feba391553f8"
+    },
+    {
+      "path": "inventory_lab/__init__.py",
+      "bytes": 107,
+      "sha256": "9a1229978062e7b14dd57b173b6e09121993e7d6cd4954d499178d921a976f93"
+    },
+    {
+      "path": "inventory_lab/admission.py",
+      "bytes": 5788,
+      "sha256": "b5edea9196d1c2e5af980cd7331b7491e0e1950983464c57a91ce094d2a7dcd2"
+    },
+    {
+      "path": "inventory_lab/cli.py",
+      "bytes": 3433,
+      "sha256": "eb526da20e1e6c20d9d9c0e8f7696c28b78ff316e55cb712fd686085002c3b69"
+    },
+    {
+      "path": "inventory_lab/graph.py",
+      "bytes": 2126,
+      "sha256": "32a6f05635a5005086758b919b8a0ac978768e375947c7642ca86ad8af6f3657"
+    },
+    {
+      "path": "inventory_lab/model.py",
+      "bytes": 7305,
+      "sha256": "32c88c22e4c1875dd7c812c48df388feb7886cf1c0bff75607009bb99317f7a6"
+    },
+    {
+      "path": "tests/test_admission.py",
+      "bytes": 4347,
+      "sha256": "d5df8551efda4f8e4e1801d271387d134e24cde1641c4cd740a90e91eaf82377"
+    },
+    {
+      "path": "tests/test_cli.py",
+      "bytes": 6010,
+      "sha256": "5988611c90def12f6ad3e83f0c4f3842ad68f9bee8558ab6c9fabadc12523dc8"
+    },
+    {
+      "path": "tests/test_model.py",
+      "bytes": 10938,
+      "sha256": "e8ba5924d6c3b14ca3d9ff7306ca56b72494edf90f2d52fe2de9b9825a1ec93a"
+    },
+    {
+      "path": "scripts/run_tests.py",
+      "bytes": 444,
+      "sha256": "c185d65224a1842967a6a433705a008824d080ddf3a04af3d3a16b756c14eeac"
+    },
+    {
+      "path": "scripts/verify_mutations.py",
+      "bytes": 3734,
+      "sha256": "186160fd72cd0cb634084709914bcd90a93fde4601d4ea8b0d78c008ca8b3471"
+    },
+    {
+      "path": "scripts/verify_project.py",
+      "bytes": 6197,
+      "sha256": "b44bda51bcc818c7bffd6d12a3ddd7b070e8b10f5da7a1b93e452ed0cc63b518"
+    }
+  ],
+  "hosted": "NOT RUN",
+  "real_inventory_used": false,
+  "scope": "custom inventory-lab/1 synthetic declarations only"
+}

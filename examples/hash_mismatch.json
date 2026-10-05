@@ -1,0 +1,22 @@
+{
+  "schema": "inventory-lab/1",
+  "synthetic": true,
+  "components": [
+    {
+      "id": "A",
+      "name": "pkg",
+      "version": "1",
+      "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    }
+  ],
+  "edges": [],
+  "assertions": [
+    {
+      "target": "A",
+      "name": "pkg",
+      "version": "1",
+      "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    }
+  ],
+  "roots": []
+}

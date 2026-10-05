@@ -1,0 +1,1090 @@
+{
+  "provenance": "Hand-selected inputs and expected model outcomes frozen before implementation; no code-generated expectations.",
+  "cases": [
+    {
+      "id": "empty",
+      "input": {
+        "schema": "inventory-lab/1",
+        "synthetic": true,
+        "components": [],
+        "edges": [],
+        "assertions": [],
+        "roots": []
+      },
+      "expected": {
+        "status": "complete",
+        "consistency": "consistent",
+        "codes": [],
+        "graph_available": true,
+        "cycles": [],
+        "reachability": "not_requested"
+      }
+    },
+    {
+      "id": "one",
+      "input": {
+        "schema": "inventory-lab/1",
+        "synthetic": true,
+        "components": [
+          {
+            "id": "A",
+            "name": "A",
+            "version": "1",
+            "sha256": null
+          }
+        ],
+        "edges": [],
+        "assertions": [],
+        "roots": []
+      },
+      "expected": {
+        "status": "complete",
+        "consistency": "consistent",
+        "codes": [],
+        "graph_available": true,
+        "cycles": [],
+        "reachability": "not_requested"
+      }
+    },
+    {
+      "id": "chain",
+      "input": {
+        "schema": "inventory-lab/1",
+        "synthetic": true,
+        "components": [
+          {
+            "id": "A",
+            "name": "A",
+            "version": "1",
+            "sha256": null
+          },
+          {
+            "id": "B",
+            "name": "B",
+            "version": "1",
+            "sha256": null
+          },
+          {
+            "id": "C",
+            "name": "C",
+            "version": "1",
+            "sha256": null
+          }
+        ],
+        "edges": [
+          {
+            "source": "A",
+            "target": "B"
+          },
+          {
+            "source": "B",
+            "target": "C"
+          }
+        ],
+        "assertions": [],
+        "roots": [
+          "A"
+        ]
+      },
+      "expected": {
+        "status": "complete",
+        "consistency": "consistent",
+        "codes": [],
+        "graph_available": true,
+        "cycles": [],
+        "reachability": "requested",
+        "reachable": [
+          "A",
+          "B",
+          "C"
+        ],
+        "not_reached": []
+      }
+    },
+    {
+      "id": "disconnected",
+      "input": {
+        "schema": "inventory-lab/1",
+        "synthetic": true,
+        "components": [
+          {
+            "id": "A",
+            "name": "A",
+            "version": "1",
+            "sha256": null
+          },
+          {
+            "id": "B",
+            "name": "B",
+            "version": "1",
+            "sha256": null
+          }
+        ],
+        "edges": [],
+        "assertions": [],
+        "roots": [
+          "A"
+        ]
+      },
+      "expected": {
+        "status": "complete",
+        "consistency": "consistent",
+        "codes": [],
+        "graph_available": true,
+        "cycles": [],
+        "reachability": "requested",
+        "reachable": [
+          "A"
+        ],
+        "not_reached": [
+          "B"
+        ]
+      }
+    },
+    {
+      "id": "cycle",
+      "input": {
+        "schema": "inventory-lab/1",
+        "synthetic": true,
+        "components": [
+          {
+            "id": "A",
+            "name": "A",
+            "version": "1",
+            "sha256": null
+          },
+          {
+            "id": "B",
+            "name": "B",
+            "version": "1",
+            "sha256": null
+          }
+        ],
+        "edges": [
+          {
+            "source": "A",
+            "target": "B"
+          },
+          {
+            "source": "B",
+            "target": "A"
+          }
+        ],
+        "assertions": [],
+        "roots": []
+      },
+      "expected": {
+        "status": "complete",
+        "consistency": "consistent",
+        "codes": [],
+        "graph_available": true,
+        "cycles": [
+          [
+            "A",
+            "B"
+          ]
+        ],
+        "reachability": "not_requested"
+      }
+    },
+    {
+      "id": "self_cycle",
+      "input": {
+        "schema": "inventory-lab/1",
+        "synthetic": true,
+        "components": [
+          {
+            "id": "A",
+            "name": "A",
+            "version": "1",
+            "sha256": null
+          }
+        ],
+        "edges": [
+          {
+            "source": "A",
+            "target": "A"
+          }
+        ],
+        "assertions": [],
+        "roots": []
+      },
+      "expected": {
+        "status": "complete",
+        "consistency": "consistent",
+        "codes": [],
+        "graph_available": true,
+        "cycles": [
+          [
+            "A"
+          ]
+        ],
+        "reachability": "not_requested"
+      }
+    },
+    {
+      "id": "duplicate_identical",
+      "input": {
+        "schema": "inventory-lab/1",
+        "synthetic": true,
+        "components": [
+          {
+            "id": "A",
+            "name": "A",
+            "version": "1",
+            "sha256": null
+          },
+          {
+            "id": "A",
+            "name": "A",
+            "version": "1",
+            "sha256": null
+          }
+        ],
+        "edges": [],
+        "assertions": [],
+        "roots": []
+      },
+      "expected": {
+        "status": "complete",
+        "consistency": "inconsistent",
+        "codes": [
+          "duplicate_component_id"
+        ],
+        "graph_available": false,
+        "cycles": null,
+        "reachability": null
+      }
+    },
+    {
+      "id": "duplicate_conflict",
+      "input": {
+        "schema": "inventory-lab/1",
+        "synthetic": true,
+        "components": [
+          {
+            "id": "A",
+            "name": "A",
+            "version": "1",
+            "sha256": null
+          },
+          {
+            "id": "A",
+            "name": "different",
+            "version": "1",
+            "sha256": null
+          }
+        ],
+        "edges": [],
+        "assertions": [],
+        "roots": []
+      },
+      "expected": {
+        "status": "complete",
+        "consistency": "inconsistent",
+        "codes": [
+          "duplicate_component_id"
+        ],
+        "graph_available": false,
+        "cycles": null,
+        "reachability": null
+      }
+    },
+    {
+      "id": "duplicate_references",
+      "input": {
+        "schema": "inventory-lab/1",
+        "synthetic": true,
+        "components": [
+          {
+            "id": "A",
+            "name": "A",
+            "version": "1",
+            "sha256": null
+          },
+          {
+            "id": "A",
+            "name": "other",
+            "version": "1",
+            "sha256": null
+          }
+        ],
+        "edges": [
+          {
+            "source": "A",
+            "target": "A"
+          }
+        ],
+        "assertions": [
+          {
+            "target": "A",
+            "name": "A",
+            "version": "1",
+            "sha256": null
+          }
+        ],
+        "roots": [
+          "A"
+        ]
+      },
+      "expected": {
+        "status": "complete",
+        "consistency": "inconsistent",
+        "codes": [
+          "ambiguous_reference",
+          "ambiguous_reference",
+          "ambiguous_reference",
+          "ambiguous_reference",
+          "duplicate_component_id"
+        ],
+        "graph_available": false,
+        "cycles": null,
+        "reachability": null
+      }
+    },
+    {
+      "id": "unknown_target",
+      "input": {
+        "schema": "inventory-lab/1",
+        "synthetic": true,
+        "components": [
+          {
+            "id": "A",
+            "name": "A",
+            "version": "1",
+            "sha256": null
+          }
+        ],
+        "edges": [
+          {
+            "source": "A",
+            "target": "X"
+          }
+        ],
+        "assertions": [],
+        "roots": []
+      },
+      "expected": {
+        "status": "complete",
+        "consistency": "inconsistent",
+        "codes": [
+          "unknown_reference"
+        ],
+        "graph_available": false,
+        "cycles": null,
+        "reachability": null
+      }
+    },
+    {
+      "id": "unknown_source",
+      "input": {
+        "schema": "inventory-lab/1",
+        "synthetic": true,
+        "components": [
+          {
+            "id": "A",
+            "name": "A",
+            "version": "1",
+            "sha256": null
+          }
+        ],
+        "edges": [
+          {
+            "source": "X",
+            "target": "A"
+          }
+        ],
+        "assertions": [],
+        "roots": []
+      },
+      "expected": {
+        "status": "complete",
+        "consistency": "inconsistent",
+        "codes": [
+          "unknown_reference"
+        ],
+        "graph_available": false,
+        "cycles": null,
+        "reachability": null
+      }
+    },
+    {
+      "id": "unknown_both",
+      "input": {
+        "schema": "inventory-lab/1",
+        "synthetic": true,
+        "components": [],
+        "edges": [
+          {
+            "source": "X",
+            "target": "Y"
+          }
+        ],
+        "assertions": [],
+        "roots": []
+      },
+      "expected": {
+        "status": "complete",
+        "consistency": "inconsistent",
+        "codes": [
+          "unknown_reference",
+          "unknown_reference"
+        ],
+        "graph_available": false,
+        "cycles": null,
+        "reachability": null
+      }
+    },
+    {
+      "id": "duplicate_edge",
+      "input": {
+        "schema": "inventory-lab/1",
+        "synthetic": true,
+        "components": [
+          {
+            "id": "A",
+            "name": "A",
+            "version": "1",
+            "sha256": null
+          },
+          {
+            "id": "B",
+            "name": "B",
+            "version": "1",
+            "sha256": null
+          }
+        ],
+        "edges": [
+          {
+            "source": "A",
+            "target": "B"
+          },
+          {
+            "source": "A",
+            "target": "B"
+          }
+        ],
+        "assertions": [],
+        "roots": []
+      },
+      "expected": {
+        "status": "complete",
+        "consistency": "inconsistent",
+        "codes": [
+          "duplicate_edge"
+        ],
+        "graph_available": true,
+        "cycles": [],
+        "reachability": "not_requested"
+      }
+    },
+    {
+      "id": "duplicate_root",
+      "input": {
+        "schema": "inventory-lab/1",
+        "synthetic": true,
+        "components": [
+          {
+            "id": "A",
+            "name": "A",
+            "version": "1",
+            "sha256": null
+          }
+        ],
+        "edges": [],
+        "assertions": [],
+        "roots": [
+          "A",
+          "A"
+        ]
+      },
+      "expected": {
+        "status": "complete",
+        "consistency": "inconsistent",
+        "codes": [
+          "duplicate_root"
+        ],
+        "graph_available": true,
+        "cycles": [],
+        "reachability": "requested",
+        "reachable": [
+          "A"
+        ],
+        "not_reached": []
+      }
+    },
+    {
+      "id": "unknown_root",
+      "input": {
+        "schema": "inventory-lab/1",
+        "synthetic": true,
+        "components": [
+          {
+            "id": "A",
+            "name": "A",
+            "version": "1",
+            "sha256": null
+          }
+        ],
+        "edges": [],
+        "assertions": [],
+        "roots": [
+          "X"
+        ]
+      },
+      "expected": {
+        "status": "complete",
+        "consistency": "inconsistent",
+        "codes": [
+          "unknown_reference"
+        ],
+        "graph_available": false,
+        "cycles": null,
+        "reachability": null
+      }
+    },
+    {
+      "id": "matching_assertion",
+      "input": {
+        "schema": "inventory-lab/1",
+        "synthetic": true,
+        "components": [
+          {
+            "id": "A",
+            "name": "pkg",
+            "version": "1",
+            "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ],
+        "edges": [],
+        "assertions": [
+          {
+            "target": "A",
+            "name": "pkg",
+            "version": "1",
+            "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ],
+        "roots": []
+      },
+      "expected": {
+        "status": "complete",
+        "consistency": "consistent",
+        "codes": [],
+        "graph_available": true,
+        "cycles": [],
+        "reachability": "not_requested"
+      }
+    },
+    {
+      "id": "null_absence",
+      "input": {
+        "schema": "inventory-lab/1",
+        "synthetic": true,
+        "components": [
+          {
+            "id": "A",
+            "name": "A",
+            "version": "1",
+            "sha256": null
+          }
+        ],
+        "edges": [],
+        "assertions": [
+          {
+            "target": "A",
+            "name": "A",
+            "version": "1",
+            "sha256": null
+          }
+        ],
+        "roots": []
+      },
+      "expected": {
+        "status": "complete",
+        "consistency": "consistent",
+        "codes": [],
+        "graph_available": true,
+        "cycles": [],
+        "reachability": "not_requested"
+      }
+    },
+    {
+      "id": "hash_mismatch",
+      "input": {
+        "schema": "inventory-lab/1",
+        "synthetic": true,
+        "components": [
+          {
+            "id": "A",
+            "name": "pkg",
+            "version": "1",
+            "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ],
+        "edges": [],
+        "assertions": [
+          {
+            "target": "A",
+            "name": "pkg",
+            "version": "1",
+            "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+          }
+        ],
+        "roots": []
+      },
+      "expected": {
+        "status": "complete",
+        "consistency": "inconsistent",
+        "codes": [
+          "assertion_mismatch"
+        ],
+        "graph_available": true,
+        "cycles": [],
+        "reachability": "not_requested"
+      }
+    },
+    {
+      "id": "null_vs_hash",
+      "input": {
+        "schema": "inventory-lab/1",
+        "synthetic": true,
+        "components": [
+          {
+            "id": "A",
+            "name": "A",
+            "version": "1",
+            "sha256": null
+          }
+        ],
+        "edges": [],
+        "assertions": [
+          {
+            "target": "A",
+            "name": "A",
+            "version": "1",
+            "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ],
+        "roots": []
+      },
+      "expected": {
+        "status": "complete",
+        "consistency": "inconsistent",
+        "codes": [
+          "assertion_mismatch"
+        ],
+        "graph_available": true,
+        "cycles": [],
+        "reachability": "not_requested"
+      }
+    },
+    {
+      "id": "name_version_mismatch",
+      "input": {
+        "schema": "inventory-lab/1",
+        "synthetic": true,
+        "components": [
+          {
+            "id": "A",
+            "name": "A",
+            "version": "1",
+            "sha256": null
+          }
+        ],
+        "edges": [],
+        "assertions": [
+          {
+            "target": "A",
+            "name": "X",
+            "version": "2",
+            "sha256": null
+          }
+        ],
+        "roots": []
+      },
+      "expected": {
+        "status": "complete",
+        "consistency": "inconsistent",
+        "codes": [
+          "assertion_mismatch"
+        ],
+        "graph_available": true,
+        "cycles": [],
+        "reachability": "not_requested"
+      }
+    },
+    {
+      "id": "unknown_assertion",
+      "input": {
+        "schema": "inventory-lab/1",
+        "synthetic": true,
+        "components": [],
+        "edges": [],
+        "assertions": [
+          {
+            "target": "X",
+            "name": "X",
+            "version": "1",
+            "sha256": null
+          }
+        ],
+        "roots": []
+      },
+      "expected": {
+        "status": "complete",
+        "consistency": "inconsistent",
+        "codes": [
+          "unknown_reference"
+        ],
+        "graph_available": true,
+        "cycles": [],
+        "reachability": "not_requested"
+      }
+    },
+    {
+      "id": "duplicate_assertion",
+      "input": {
+        "schema": "inventory-lab/1",
+        "synthetic": true,
+        "components": [
+          {
+            "id": "A",
+            "name": "A",
+            "version": "1",
+            "sha256": null
+          }
+        ],
+        "edges": [],
+        "assertions": [
+          {
+            "target": "A",
+            "name": "A",
+            "version": "1",
+            "sha256": null
+          },
+          {
+            "target": "A",
+            "name": "A",
+            "version": "1",
+            "sha256": null
+          }
+        ],
+        "roots": []
+      },
+      "expected": {
+        "status": "complete",
+        "consistency": "inconsistent",
+        "codes": [
+          "duplicate_assertion"
+        ],
+        "graph_available": true,
+        "cycles": [],
+        "reachability": "not_requested"
+      }
+    },
+    {
+      "id": "contradictory_assertions",
+      "input": {
+        "schema": "inventory-lab/1",
+        "synthetic": true,
+        "components": [
+          {
+            "id": "A",
+            "name": "A",
+            "version": "1",
+            "sha256": null
+          }
+        ],
+        "edges": [],
+        "assertions": [
+          {
+            "target": "A",
+            "name": "A",
+            "version": "1",
+            "sha256": null
+          },
+          {
+            "target": "A",
+            "name": "A",
+            "version": "2",
+            "sha256": null
+          }
+        ],
+        "roots": []
+      },
+      "expected": {
+        "status": "complete",
+        "consistency": "inconsistent",
+        "codes": [
+          "assertion_mismatch",
+          "contradictory_assertions"
+        ],
+        "graph_available": true,
+        "cycles": [],
+        "reachability": "not_requested"
+      }
+    },
+    {
+      "id": "equal_null_declarations",
+      "input": {
+        "schema": "inventory-lab/1",
+        "synthetic": true,
+        "components": [
+          {
+            "id": "A",
+            "name": "pkg",
+            "version": "1",
+            "sha256": null
+          },
+          {
+            "id": "B",
+            "name": "pkg",
+            "version": "1",
+            "sha256": null
+          }
+        ],
+        "edges": [],
+        "assertions": [],
+        "roots": []
+      },
+      "expected": {
+        "status": "complete",
+        "consistency": "consistent",
+        "codes": [],
+        "graph_available": true,
+        "cycles": [],
+        "reachability": "not_requested",
+        "declaration_kinds": [
+          "equal_supplied_declarations"
+        ]
+      }
+    },
+    {
+      "id": "different_hash_declarations",
+      "input": {
+        "schema": "inventory-lab/1",
+        "synthetic": true,
+        "components": [
+          {
+            "id": "A",
+            "name": "pkg",
+            "version": "1",
+            "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          },
+          {
+            "id": "B",
+            "name": "pkg",
+            "version": "1",
+            "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+          }
+        ],
+        "edges": [],
+        "assertions": [],
+        "roots": []
+      },
+      "expected": {
+        "status": "complete",
+        "consistency": "consistent",
+        "codes": [],
+        "graph_available": true,
+        "cycles": [],
+        "reachability": "not_requested",
+        "declaration_kinds": [
+          "different_supplied_declarations"
+        ]
+      }
+    },
+    {
+      "id": "equal_hash_different_names",
+      "input": {
+        "schema": "inventory-lab/1",
+        "synthetic": true,
+        "components": [
+          {
+            "id": "A",
+            "name": "p",
+            "version": "1",
+            "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          },
+          {
+            "id": "B",
+            "name": "q",
+            "version": "1",
+            "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ],
+        "edges": [],
+        "assertions": [],
+        "roots": []
+      },
+      "expected": {
+        "status": "complete",
+        "consistency": "consistent",
+        "codes": [],
+        "graph_available": true,
+        "cycles": [],
+        "reachability": "not_requested",
+        "declaration_kinds": []
+      }
+    },
+    {
+      "id": "unknown_schema",
+      "input": {
+        "schema": "future-1",
+        "synthetic": true,
+        "components": [],
+        "edges": [],
+        "assertions": [],
+        "roots": []
+      },
+      "expected": {
+        "status": "unsupported",
+        "consistency": null,
+        "codes": [],
+        "graph_available": null,
+        "cycles": null,
+        "reachability": null
+      }
+    },
+    {
+      "id": "missing_name",
+      "input": {
+        "schema": "inventory-lab/1",
+        "synthetic": true,
+        "components": [
+          {
+            "id": "A",
+            "version": "1",
+            "sha256": null
+          }
+        ],
+        "edges": [],
+        "assertions": [],
+        "roots": []
+      },
+      "expected": {
+        "status": "invalid",
+        "consistency": null,
+        "codes": [],
+        "graph_available": null,
+        "cycles": null,
+        "reachability": null
+      }
+    },
+    {
+      "id": "missing_assertion_version",
+      "input": {
+        "schema": "inventory-lab/1",
+        "synthetic": true,
+        "components": [],
+        "edges": [],
+        "assertions": [
+          {
+            "target": "A",
+            "name": "A",
+            "sha256": null
+          }
+        ],
+        "roots": []
+      },
+      "expected": {
+        "status": "invalid",
+        "consistency": null,
+        "codes": [],
+        "graph_available": null,
+        "cycles": null,
+        "reachability": null
+      }
+    },
+    {
+      "id": "unknown_schema_bad_late",
+      "input": {
+        "schema": "future-1",
+        "synthetic": true,
+        "components": [
+          {
+            "id": "A",
+            "name": "A",
+            "version": "1",
+            "sha256": null
+          },
+          {
+            "id": "B",
+            "name": "B",
+            "version": 5,
+            "sha256": null
+          }
+        ],
+        "edges": [],
+        "assertions": [],
+        "roots": []
+      },
+      "expected": {
+        "status": "invalid",
+        "consistency": null,
+        "codes": [],
+        "graph_available": null,
+        "cycles": null,
+        "reachability": null
+      }
+    },
+    {
+      "id": "duplicate_then_bad_late",
+      "input": {
+        "schema": "inventory-lab/1",
+        "synthetic": true,
+        "components": [
+          {
+            "id": "A",
+            "name": "A",
+            "version": "1",
+            "sha256": null
+          },
+          {
+            "id": "A",
+            "name": "A",
+            "version": "1",
+            "sha256": null
+          },
+          {
+            "id": "Z",
+            "name": "Z",
+            "version": "1",
+            "sha256": "bad"
+          }
+        ],
+        "edges": [],
+        "assertions": [],
+        "roots": []
+      },
+      "expected": {
+        "status": "invalid",
+        "consistency": null,
+        "codes": [],
+        "graph_available": null,
+        "cycles": null,
+        "reachability": null
+      }
+    },
+    {
+      "id": "synthetic_false",
+      "input": {
+        "schema": "inventory-lab/1",
+        "synthetic": false,
+        "components": [],
+        "edges": [],
+        "assertions": [],
+        "roots": []
+      },
+      "expected": {
+        "status": "invalid",
+        "consistency": null,
+        "codes": [],
+        "graph_available": null,
+        "cycles": null,
+        "reachability": null
+      }
+    }
+  ]
+}
